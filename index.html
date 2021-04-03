@@ -4,7 +4,7 @@ Your Name:
 Collaborators:
 -->
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <!--
 /* Copyright (c) 2017 MIT 6.813/6.831 course staff, all rights reserved.
  * Redistribution of original or derived work requires permission of course staff.
@@ -112,8 +112,7 @@ Collaborators:
                     if (board.getCandyAt(i, j).color === 'yellow')
                     {
                         document.getElementById(array[j] + (i + 1)).style.color = 'grey';
-                    }
-                    else
+                    } else
                     {
                         document.getElementById(array[j] + (i + 1)).style.color = 'white';
                     }
@@ -142,7 +141,27 @@ Collaborators:
         });
 
         // Button Events
-        $(document).on('click', "#buttonIDhere", function (evt)
+        $(document).on('click', "#ButtonUp", function (evt)
+        {
+            // Your code here.
+        });
+
+        $(document).on('click', "#ButtonLeft", function (evt)
+        {
+            // Your code here.
+        });
+
+        $(document).on('click', "#ButtonDown", function (evt)
+        {
+            // Your code here.
+        });
+
+        $(document).on('click', "#ButtonRight", function (evt)
+        {
+            // Your code here.
+        });
+
+        $(document).on('click', "#ButtonCrush", function (evt)
         {
             // Your code here.
         });
@@ -167,7 +186,7 @@ Collaborators:
             <div>
                 <!-- Column 1 Code Here -->
                 <h1 id="Title">Candy</h1>
-                <h1 id="Title">Crush</h1>
+                <h2 id="Title">Crush</h2>
                 <div>
                     <input type="button" class="btn" id="NewGame" value="New Game"/>
                 </div>
@@ -183,7 +202,24 @@ Collaborators:
 
         <div class="col-md-4" id="lastColumn">
 
-            <!-- Column 3 Code Here -->
+            <!-- Column 3 Code Here https://getbootstrap.com/docs/3.4/components/-->
+            <p id="TextMove"> Move: </p>
+            <label for="TextInputSelection"></label><input type="text" class="form-control" id="TextInputSelection">
+
+
+            <input type="button" class="btn btn-default" id="ButtonUp" value="↑" disabled="disabled">
+            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+
+            <input type="button" class="btn btn-default" id="ButtonLeft" value="←" disabled="disabled">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+
+            <input type="button" class="btn btn-default" id="ButtonDown" value="↓" disabled="disabled">
+            <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+
+            <input type="button" class="btn btn-default" id="ButtonRight" value="→" disabled="disabled">
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+
+            <input type="button" class="btn btn-default" id="ButtonCrush" value="Crush" disabled="disabled">
 
 
         </div>
