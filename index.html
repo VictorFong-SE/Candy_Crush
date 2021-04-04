@@ -50,7 +50,6 @@ https://www.tablesgenerator.com/html_tables
         // each time you load (which is accomplished by "seeding" the random
         // number generator. This makes testing (and grading!) easier!
         Math.seedrandom(0);
-        const ColumnNames = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 
         // A short jQuery extension to read query parameters from the URL.
@@ -200,7 +199,7 @@ https://www.tablesgenerator.com/html_tables
             // Your code here.
             let color;
 
-            document.getElementById(info.toRow + info.toCol).style.background = info.color.color;
+            document.getElementById(info.toRow.toString() + info.toCol.toString()).style.background = info.color.color;
             if (info.candy.color !== 'yellow')
             {
                 color = 'white';
@@ -208,16 +207,14 @@ https://www.tablesgenerator.com/html_tables
             {
                 color = 'black';
             }
-            document.getElementById(row + col).style.color = color;
-
+            document.getElementById(info.toRow.toString() + info.toCol.toString()).style.color = color;
         });
 
         // remove a candy from the board
         $(board).on('remove', function (e, info)
         {
             // Your code here.
-
-            document.getElementById(info.fromRow + info.fromCol).style.background = 'black';
+            document.getElementById(info.fromRow.toString() + info.fromCol.toString()).style.background = 'black';
         });
 
         // move a candy on the board
@@ -230,6 +227,7 @@ https://www.tablesgenerator.com/html_tables
         $(document).on('click', "#NewGame", function (evt)
         {
             // Your code here.
+            console.log("click");
             board.clear();
             rules.prepareNewGame();
         });
