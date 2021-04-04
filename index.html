@@ -1,7 +1,16 @@
 <!--
 CandyCrush
-Your Name:
+Your Name: Victor Fong
 Collaborators:
+https//getboothttpsstrap.com/docs/3.4/components/
+Stack overflow:
+https://www.google.com/search?client=opera-gx&q=javascript+%24()+meaning&sourceid=opera&ie=UTF-8&oe=UTF-8
+https://stackoverflow.com/questions/32181973/which-is-performancewise-better-check-for-class-or-add-class
+https://stackoverflow.com/questions/6840326/how-can-i-create-and-style-a-div-using-javascript/6840399
+https://stackoverflow.com/questions/17941143/jquery-addclass-not-working
+w3schools.com:
+https://www.w3schools.com/css/css3_buttons.asp
+https://www.tablesgenerator.com/html_tables
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
@@ -41,6 +50,7 @@ Collaborators:
         // each time you load (which is accomplished by "seeding" the random
         // number generator. This makes testing (and grading!) easier!
         Math.seedrandom(0);
+        const ColumnNames = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 
         // A short jQuery extension to read query parameters from the URL.
@@ -70,6 +80,7 @@ Collaborators:
         // data model at global scope for easier debugging
         var board;
         var rules;
+        const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
         // initialize board
         if ($.getUrlVar('size') && $.getUrlVar('size') >= 3)
@@ -83,11 +94,51 @@ Collaborators:
         // load a rule
         rules = new Rules(board);
 
+        //~~~~~~~~~~~~~~~~~ HELPERS ~~~~~~~~~~~~~~~~~~~~
+        // The dollar function, $(), can be used as shorthand for the getElementById function.
+        // To refer to an element in the Document Object Model (DOM) of an HTML page, the usual function identifying an element is: document. .
+        // .. The $() function reduces the code to: $("id_of_element").
+
+        function disable(ID)
+        {
+            document.getElementById(ID).disabled = true;
+        }
+
+        function enable(ID)
+        {
+            document.getElementById(ID).disabled = false;
+        }
+
+        function reset()
+        {
+            rules.prepareNewGame();
+            let row, col, color;
+            for (let i = 0; i < DEFAULT_BOARD_SIZE; i++)
+            {
+                for (j = 0; j < DEFAULT_BOARD_SIZE; j++)
+                {
+                    row = i.toString();
+                    col = j.toString();
+
+                    document.getElementById(row + col).style.background = board.getCandyAt(row, col).color;
+
+                    if (board.getCandyAt(row, col).color !== 'yellow')
+                    {
+                        color = 'white';
+                    } else
+                    {
+                        color = 'black';
+                    }
+                    document.getElementById(row + col).style.color = color;
+                }
+            }
+        }
+
         // Final initialization entry point: the Javascript code inside this block
         // runs at the end of start-up when the page has finished loading.
         $(document).ready(function ()
         {
-            // Your code here.
+            // Your code here. /TODO
             rules.prepareNewGame();
         });
 
@@ -98,27 +149,21 @@ Collaborators:
         // add a candy to the board
         $(board).on('add', function (e, info)
         {
-            rules.prepareNewGame();
-            const array = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-            for (let j = 0; j < array.length; j++)
+            // Your code here. //TODO
+            let color, row, col;
+            //edit table
+            row = info.candy.row.toString();
+            col = info.candy.col.toString();
+            document.getElementById(row + col).style.background = info.candy.color;
+
+            if (info.candy.color !== 'yellow')
             {
-                for (let i = 0; i < 8; i++)
-                {
-
-                    console.log(array[j] + (i + 1));
-                    console.log(board.getCandyAt(i, j).color);
-                    document.getElementById(array[j] + (i + 1)).style.background = (board.getCandyAt(i, j).color);
-                    //if the color is not yellow make the text white else make the text black.
-                    if (board.getCandyAt(i, j).color === 'yellow')
-                    {
-                        document.getElementById(array[j] + (i + 1)).style.color = 'grey';
-                    } else
-                    {
-                        document.getElementById(array[j] + (i + 1)).style.color = 'white';
-                    }
-                }
+                color = 'white';
+            } else
+            {
+                color = 'black';
             }
-
+            document.getElementById(row + col).style.color = color;
 
         });
 
@@ -185,8 +230,8 @@ Collaborators:
         <div class="col-md-4" id="firstColumn">
             <div>
                 <!-- Column 1 Code Here -->
-                <h1 id="Title">Candy</h1>
-                <h2 id="Title">Crush</h2>
+                <h1 class="Title">Candy</h1>
+                <h2 class="Title">Crush</h2>
                 <div>
                     <input type="button" class="btn" id="NewGame" value="New Game"/>
                 </div>
@@ -196,13 +241,96 @@ Collaborators:
         <div class="col-md-4" id="mainColumn">
 
             <!-- Column 2 Code Here -->
-            <table id="GameField"></table>
-
+            <!--            table generated from table generator-->
+            <table>
+                <tbody>
+                <tr>
+                    <td id="00">a1</td>
+                    <td id="10">b1</td>
+                    <td id="20">c1</td>
+                    <td id="30">d1</td>
+                    <td id="40">e1</td>
+                    <td id="50">f1</td>
+                    <td id="60">g1</td>
+                    <td id="70">h1</td>
+                </tr>
+                <tr>
+                    <td id="01">a2</td>
+                    <td id="11">b2</td>
+                    <td id="21">c2</td>
+                    <td id="31">d2</td>
+                    <td id="41">e2</td>
+                    <td id="51">f2</td>
+                    <td id="61">g2</td>
+                    <td id="71">h2</td>
+                </tr>
+                <tr>
+                    <td id="02">a3</td>
+                    <td id="12">b3</td>
+                    <td id="22">c3</td>
+                    <td id="32">d3</td>
+                    <td id="42">e3</td>
+                    <td id="52">f3</td>
+                    <td id="62">g3</td>
+                    <td id="72">h3</td>
+                </tr>
+                <tr>
+                    <td id="03">a4</td>
+                    <td id="13">b4</td>
+                    <td id="23">c4</td>
+                    <td id="33">d4</td>
+                    <td id="43">e4</td>
+                    <td id="53">f4</td>
+                    <td id="63">g4</td>
+                    <td id="73">h4</td>
+                </tr>
+                <tr>
+                    <td id="04">a5</td>
+                    <td id="14">b5</td>
+                    <td id="24">c5</td>
+                    <td id="34">d5</td>
+                    <td id="44">e5</td>
+                    <td id="54">f5</td>
+                    <td id="64">g5</td>
+                    <td id="74">h5</td>
+                </tr>
+                <tr>
+                    <td id="05">a6</td>
+                    <td id="15">b6</td>
+                    <td id="25">c6</td>
+                    <td id="35">d6</td>
+                    <td id="45">e6</td>
+                    <td id="55">f6</td>
+                    <td id="65">g6</td>
+                    <td id="75">h6</td>
+                </tr>
+                <tr>
+                    <td id="06">a7</td>
+                    <td id="16">b7</td>
+                    <td id="26">c7</td>
+                    <td id="36">d7</td>
+                    <td id="46">e7</td>
+                    <td id="56">f7</td>
+                    <td id="66">g7</td>
+                    <td id="76">h7</td>
+                </tr>
+                <tr>
+                    <td id="07">a8</td>
+                    <td id="17">b8</td>
+                    <td id="27">c8</td>
+                    <td id="37">d8</td>
+                    <td id="47">e8</td>
+                    <td id="57">f8</td>
+                    <td id="67">g8</td>
+                    <td id="77">h8</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
         <div class="col-md-4" id="lastColumn">
 
-            <!-- Column 3 Code Here https://getbootstrap.com/docs/3.4/components/-->
+            <!-- Column 3 Code -->
             <p id="TextMove"> Move: </p>
             <label for="TextInputSelection"></label><input type="text" class="form-control" id="TextInputSelection">
 

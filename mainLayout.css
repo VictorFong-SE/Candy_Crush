@@ -24,11 +24,11 @@
 
 
 /* Column 1 */
-#Title
+.Title
 {
-    position: relative;
-    top: 125px;
-    left:100px;
+    position    : relative;
+    top         : 125px;
+    left        : 100px;
     color       : red;
     font-weight : bold;
     font-size   : xxx-large;
@@ -39,9 +39,9 @@
 
 #NewGame
 {
-    position: relative;
-    top: 125px;
-    left:100px;
+    position         : relative;
+    top              : 125px;
+    left             : 100px;
     background-color : darkslategray;
     margin           : 10px;
     border           : 3px black;
@@ -51,24 +51,39 @@
 
 
 /* Column 2 */
+/*#GameTable*/
+/*{*/
+/*    position     : relative;*/
+/*    top          : 100px;*/
+/*    table-layout : fixed;*/
+/*    width        : 320px;*/
+/*    height       : 320px;*/
+/*}*/
+
 table
 {
-    border          : 3px black;
+    position        : relative;
+    top             : 100px;
+    table-layout    : fixed;
+    width           : 320px;
+    height           : 320px;
+    border          : 3px solid black;
     border-collapse : collapse;
+
 }
 
 tr
 {
-    border: 3px black;
-    border-collapse: collapse;
-    text-align: center;
+    border          : 3px solid black;
+    border-collapse : collapse;
+    text-align      : center;
 }
 
 td
 {
-    border:3px black;
-    border-collapse: collapse;
-    text-align: center;
+    border          : 3px solid black;
+    border-collapse : collapse;
+    text-align      : center;
 }
 
 
@@ -76,71 +91,71 @@ td
 
 #TextMove
 {
-    position: relative;
-    top: 150px;
-    left:100px;
+    position    : relative;
+    top         : 150px;
+    left        : 100px;
     font-weight : bold;
-    font-size: larger;
+    font-size   : larger;
 }
 
 #TextInputSelection
 {
-    position: relative;
-    top:80px;
-    width: 20%;
-    left: 175px;
+    position : relative;
+    top      : 80px;
+    width    : 20%;
+    left     : 175px;
     padding  : 5px;
 }
 
 
 #ButtonUp
 {
-    position: relative;
-    top: 100px;
-    left:150px;
-    background-color: slategray;
-    color:whitesmoke;
+    position         : relative;
+    top              : 100px;
+    left             : 150px;
+    background-color : slategray;
+    color            : whitesmoke;
 
 }
 
 #ButtonLeft
 {
 
-    position: relative;
-    top: 150px;
-    left:50px;
-    background-color: slategray;
-    color:whitesmoke;
+    position         : relative;
+    top              : 150px;
+    left             : 50px;
+    background-color : slategray;
+    color            : whitesmoke;
 }
 
 #ButtonDown
 {
-    position: relative;
-    top: 200px;
-    left:50px;
+    position         : relative;
+    top              : 200px;
+    left             : 50px;
 
-    background-color: slategray;
-    color:whitesmoke;
+    background-color : slategray;
+    color            : whitesmoke;
 }
 
 #ButtonRight
 {
-    position: relative;
-    top: 150px;
-    left:50px;
+    position         : relative;
+    top              : 150px;
+    left             : 50px;
 
-    background-color: slategray;
-    color:whitesmoke;
+    background-color : slategray;
+    color            : whitesmoke;
 }
 
 
 #ButtonCrush
 {
-    position: relative;
-    top:250px;
-    right:70px;
+    position         : relative;
+    top              : 250px;
+    right            : 70px;
     border           : 3px black;
     font-weight      : bold;
     background-color : red;
-    color: black;
+    color            : black;
 }
