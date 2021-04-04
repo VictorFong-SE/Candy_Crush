@@ -80,7 +80,6 @@ https://www.tablesgenerator.com/html_tables
         // data model at global scope for easier debugging
         var board;
         var rules;
-        const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
         // initialize board
         if ($.getUrlVar('size') && $.getUrlVar('size') >= 3)
@@ -109,29 +108,52 @@ https://www.tablesgenerator.com/html_tables
             document.getElementById(ID).disabled = false;
         }
 
+        function parseCandy(ID)
+        {
+            switch (ID.charAt(0))
+            {
+                case 'a':
+                    return 0;
+                case 'b':
+                    return 1;
+                case 'c':
+                    return 2;
+                case 'd':
+                    return 3;
+                case 'e':
+                    return 4;
+                case 'f':
+                    return 5;
+                case 'g':
+                    return 6;
+                default:
+                    return -1;
+            }
+        }
+
         function reset()
         {
             rules.prepareNewGame();
-            let row, col, color;
-            for (let i = 0; i < DEFAULT_BOARD_SIZE; i++)
-            {
-                for (j = 0; j < DEFAULT_BOARD_SIZE; j++)
-                {
-                    row = i.toString();
-                    col = j.toString();
-
-                    document.getElementById(row + col).style.background = board.getCandyAt(row, col).color;
-
-                    if (board.getCandyAt(row, col).color !== 'yellow')
-                    {
-                        color = 'white';
-                    } else
-                    {
-                        color = 'black';
-                    }
-                    document.getElementById(row + col).style.color = color;
-                }
-            }
+            // let row, col, color;
+            // for (let i = 0; i < DEFAULT_BOARD_SIZE; i++)
+            // {
+            //     for (j = 0; j < DEFAULT_BOARD_SIZE; j++)
+            //     {
+            //         row = i.toString();
+            //         col = j.toString();
+            //
+            //         document.getElementById(row + col).style.background = board.getCandyAt(row, col).color;
+            //
+            //         if (board.getCandyAt(row, col).color !== 'yellow')
+            //         {
+            //             color = 'white';
+            //         } else
+            //         {
+            //             color = 'black';
+            //         }
+            //         document.getElementById(row + col).style.color = color;
+            //     }
+            // }
         }
 
         // Final initialization entry point: the Javascript code inside this block
@@ -140,6 +162,11 @@ https://www.tablesgenerator.com/html_tables
         {
             // Your code here. /TODO
             rules.prepareNewGame();
+            // disable("ButtonUp");
+            // disable("ButtonLeft");
+            // disable("ButtonDown");
+            // disable("ButtonRight");
+            // disable("ButtonCrunch");
         });
 
 
@@ -149,7 +176,7 @@ https://www.tablesgenerator.com/html_tables
         // add a candy to the board
         $(board).on('add', function (e, info)
         {
-            // Your code here. //TODO
+            // Your code here.
             let color, row, col;
             //edit table
             row = info.candy.row.toString();
@@ -171,12 +198,26 @@ https://www.tablesgenerator.com/html_tables
         $(board).on('move', function (e, info)
         {
             // Your code here.
+            let color;
+
+            document.getElementById(info.toRow + info.toCol).style.background = info.color.color;
+            if (info.candy.color !== 'yellow')
+            {
+                color = 'white';
+            } else
+            {
+                color = 'black';
+            }
+            document.getElementById(row + col).style.color = color;
+
         });
 
         // remove a candy from the board
         $(board).on('remove', function (e, info)
         {
             // Your code here.
+
+            document.getElementById(info.fromRow + info.fromCol).style.background = 'black';
         });
 
         // move a candy on the board
@@ -186,24 +227,65 @@ https://www.tablesgenerator.com/html_tables
         });
 
         // Button Events
+        $(document).on('click', "#NewGame", function (evt)
+        {
+            // Your code here.
+            board.clear();
+            rules.prepareNewGame();
+        });
+
+
         $(document).on('click', "#ButtonUp", function (evt)
         {
             // Your code here.
+            let input = document.getElementById("TextInputSelection").value;
+            console.log(input);
+
+            let candySelected = board.getCandyAt(parseCandy(input), parseInt(input.charAt(1)));
+            if (rules.isMoveTypeValid(candySelected, 'up'))
+            {
+                board.moveTo(candySelected, candySelected.row - 1, candySelected.candy.col);
+            }
+
         });
 
         $(document).on('click', "#ButtonLeft", function (evt)
         {
             // Your code here.
+            let input = document.getElementById("TextInputSelection").value;
+            console.log(input);
+
+            let candySelected = board.getCandyAt(parseCandy(input), parseInt(input.charAt(1)));
+            if (rules.isMoveTypeValid(candySelected, 'left'))
+            {
+                board.moveTo(candySelected, candySelected.row, candySelected.candy.col - 1);
+            }
         });
 
         $(document).on('click', "#ButtonDown", function (evt)
         {
             // Your code here.
+            let input = document.getElementById("TextInputSelection").value;
+            console.log(input);
+
+            let candySelected = board.getCandyAt(parseCandy(input), parseInt(input.charAt(1)));
+            if (rules.isMoveTypeValid(candySelected, 'down'))
+            {
+                board.moveTo(candySelected, candySelected.row + 1, candySelected.candy.col);
+            }
         });
 
         $(document).on('click', "#ButtonRight", function (evt)
         {
             // Your code here.
+            let input = document.getElementById("TextInputSelection").value;
+            console.log(input);
+
+            let candySelected = board.getCandyAt(parseCandy(input), parseInt(input.charAt(1)));
+            if (rules.isMoveTypeValid(candySelected, 'right'))
+            {
+                board.moveTo(candySelected, candySelected.row, candySelected.candy.col + 1);
+            }
         });
 
         $(document).on('click', "#ButtonCrush", function (evt)
@@ -241,7 +323,7 @@ https://www.tablesgenerator.com/html_tables
         <div class="col-md-4" id="mainColumn">
 
             <!-- Column 2 Code Here -->
-            <!--            table generated from table generator-->
+            <!--            table generated from table generator, with id added in row coloumn design-->
             <table>
                 <tbody>
                 <tr>
@@ -331,23 +413,18 @@ https://www.tablesgenerator.com/html_tables
         <div class="col-md-4" id="lastColumn">
 
             <!-- Column 3 Code -->
-            <p id="TextMove"> Move: </p>
+            <h3 id="TextMove"> Move: </h3>
             <label for="TextInputSelection"></label><input type="text" class="form-control" id="TextInputSelection">
 
+            <input type="button" class="btn btn-default" id="ButtonUp" value="↑">
 
-            <input type="button" class="btn btn-default" id="ButtonUp" value="↑" disabled="disabled">
-            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+            <input type="button" class="btn btn-default" id="ButtonLeft" value="←">
 
-            <input type="button" class="btn btn-default" id="ButtonLeft" value="←" disabled="disabled">
-            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            <input type="button" class="btn btn-default" id="ButtonDown" value="↓">
 
-            <input type="button" class="btn btn-default" id="ButtonDown" value="↓" disabled="disabled">
-            <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+            <input type="button" class="btn btn-default" id="ButtonRight" value="→">
 
-            <input type="button" class="btn btn-default" id="ButtonRight" value="→" disabled="disabled">
-            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-
-            <input type="button" class="btn btn-default" id="ButtonCrush" value="Crush" disabled="disabled">
+            <input type="button" class="btn btn-default" id="ButtonCrush" value="Crush Once">
 
 
         </div>

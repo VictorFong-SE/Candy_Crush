@@ -10,16 +10,19 @@
 {
     padding     : 10px;
     align-items : center;
+    width: 25%;
 }
 
 #mainColumn
 {
     padding : 10px;
+    width: 50%;
 }
 
 #lastColumn
 {
     padding : 10px;
+    width: 25%;
 }
 
 
@@ -51,14 +54,7 @@
 
 
 /* Column 2 */
-/*#GameTable*/
-/*{*/
-/*    position     : relative;*/
-/*    top          : 100px;*/
-/*    table-layout : fixed;*/
-/*    width        : 320px;*/
-/*    height       : 320px;*/
-/*}*/
+
 
 table
 {
@@ -92,7 +88,7 @@ td
 #TextMove
 {
     position    : relative;
-    top         : 150px;
+    top         : 140px;
     left        : 100px;
     font-weight : bold;
     font-size   : larger;
@@ -153,7 +149,7 @@ td
 {
     position         : relative;
     top              : 250px;
-    right            : 70px;
+    right            : 90px;
     border           : 3px black;
     font-weight      : bold;
     background-color : red;
